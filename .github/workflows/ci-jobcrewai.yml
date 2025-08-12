@@ -1,0 +1,41 @@
+name: CI jobcrewai
+
+on:
+  push:
+    paths: [ 'crewai-outbound/jobcrewai/**' ]
+  workflow_dispatch: {}
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: crewai-outbound/jobcrewai
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run project
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          # Ajoute ici d'autres secrets si besoin pour ce projet
+        run: |
+          ENTRYPOINT=$(ls -1 2>/dev/null | grep -E '^(main|app|run|start|progress_report)\.py$' | head -n1)
+          if [ -z "$ENTRYPOINT" ]; then echo "❌ Aucun entrypoint *.py trouvé"; exit 1; fi
+          python "$ENTRYPOINT"
+
+      - name: Upload artifacts (outputs/)
+        if: ${{ hashFiles('crewai-outbound/jobcrewai/outputs/**') != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: jobcrewai-artifacts
+          path: crewai-outbound/jobcrewai/outputs/
