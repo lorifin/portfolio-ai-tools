@@ -1,0 +1,30 @@
+task_breakdown:
+  description: >
+    Analyse {project_requirements} et produit une WBS claire avec dépendances,
+    DoD, et livrables. Priorise par valeur et risques.
+  expected_output: |
+    - Tâches (ID, description, DoD, dépendances, livrables)
+    - Jalons majeurs (nom, critères de passage)
+    - Risques clés + mitigations
+
+time_resource_estimation:
+  description: >
+    Estime pour chaque tâche: temps (heures), effort (personnes),
+    risques, ressources. Indique hypothèses.
+  expected_output: |
+    - Tableau: task_id, time_hours, effort, risks, resources
+    - Hypothèses d’estimation (bref)
+  depends_on:
+    - task_breakdown
+
+resource_allocation:
+  description: >
+    Alloue les tâches à {team_members}, lisse la charge, propose un plan
+    par itérations avec capacité et jalons. Identifier chemin critique.
+  expected_output: |
+    - Plan d’allocation (task_id -> owner, période, charge)
+    - Itérations/jalons: capacité vs charge
+    - KPI: charge/personne, risques résiduels
+  depends_on:
+    - task_breakdown
+    - time_resource_estimation

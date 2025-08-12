@@ -1,0 +1,17 @@
+data_collection:
+  description: >
+    Récupère toutes les cartes du board Trello avec détails (liste, dates, labels, commentaires).
+  expected_output: >
+    JSON [{id, name, list_name, due, last_activity, labels[], comments[]}]
+
+data_analysis:
+  description: >
+    Analyse retards, non démarrées, en cours; risques & dépendances; propose 5 actions prioritaires.
+  expected_output: >
+    Diagnostic synthétique + 5 actions priorisées
+
+report_generation:
+  description: >
+    Génère un rapport Sprint Markdown: Vue d'ensemble, tâches, blocages, retards, perf équipe, recos.
+  expected_output: >
+    Markdown ≤ 2 pages, ton positif, prêt à partager

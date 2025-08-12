@@ -1,0 +1,8 @@
+services:
+  crewai:
+    build: ./docker
+    env_file:
+      - .env
+    volumes:
+      - ./:/app
+    command: ["python", "-m", "src.pipeline"]

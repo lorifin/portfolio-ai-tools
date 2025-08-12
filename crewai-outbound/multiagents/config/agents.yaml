@@ -1,0 +1,13 @@
+data_collection_agent:
+  role: "Spécialiste Data Trello"
+  goal: "Collecter des données Trello fiables."
+  backstory: "Prépare une base propre et exploitable pour l'analyse."
+  allow_delegation: false
+  verbose: true
+
+analysis_agent:
+  role: "Analyste Projet"
+  goal: "Analyser progression, délais, blocages et produire un rapport sprint."
+  backstory: "Transforme les données Trello en recommandations actionnables."
+  allow_delegation: false
+  verbose: true

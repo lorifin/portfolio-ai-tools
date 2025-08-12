@@ -1,0 +1,19 @@
+cd multiagents
+cat > .gitignore <<'EOF'
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Secrets & sorties
+.env
+outputs/
+EOF

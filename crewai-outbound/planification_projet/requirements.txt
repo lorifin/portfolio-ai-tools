@@ -1,0 +1,6 @@
+crewai
+pydantic>=2
+pyyaml
+pandas
+ipython
+python-dotenv
